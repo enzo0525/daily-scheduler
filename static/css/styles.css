@@ -1,0 +1,40 @@
+/* Index Page */
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+    border: 3px solid rgba(54, 54, 54, 0.4); 
+    border-radius: 10px;
+    margin: 30px; 
+    height: 80vh;
+    width: 50vw;
+}
+
+.box-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.workout-day-title {
+    display: inline-block;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+/* Submit Page */
+
+.submit-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
