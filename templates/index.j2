@@ -1,0 +1,35 @@
+{% include 'partials/nav.html' %}
+
+<!-- Box -->
+<main class="container">
+    <div class="box">
+        <h1 class="box-title">Add new Task</h1>
+        <form action="/submit", method="post">
+            <div class="m-5">
+                <label for="taskName" class="form-label">Task Name</label>
+                <input type="text" class="form-control" id="taskName" required name="taskName">
+            </div>
+            <div class="m-5">
+                <label for="taskDayOfWeek" class="form-label">Day</label>
+                <select name="taskDayOfWeek" id="taskDayOfWeek" class="form-select" aria-label="Default select example" required>
+                    <option value="0" selected>Monday</option>
+                    <option value="1">Tuesday</option>
+                    <option value="2">Wednesday</option>
+                    <option value="3">Thrusday</option>
+                    <option value="4">Friday</option>
+                    <option value="5">Saturday</option>
+                    <option value="6">Sunday</option>
+                </select>
+            </div>
+            <div class="m-5">
+                <label for="taskNotes" class="form-label">Notes (Optional)</label>
+                <input type="text" class="form-control" id="taskNotes" name="taskNotes">
+            </div>
+            <div class="submit-button">
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+        </form>
+    </div>
+</main>
+       
+{% include "partials/footer.html" %}

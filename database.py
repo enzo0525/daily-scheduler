@@ -14,3 +14,6 @@ def add_task_database(data):
 
 def remove_task_database(dataId): # To do
     pass
+
+def get_all_routines():
+    return list(tasks_collection.find())
