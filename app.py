@@ -1,5 +1,5 @@
-from flask import Flask, request, render_template, jsonify, redirect, url_for
-from database import add_task_database, get_all_routines
+from flask import Flask, request, render_template, jsonify
+from database import add_task_database, get_all_routines, remove_task_database
 
 app = Flask(__name__)
 
@@ -29,10 +29,14 @@ def submit():
             'taskNotes': request.form['taskNotes']
         }
 
-        #add error handling (no name)
-
         add_task_database(data)
         return render_template('submit.j2')
+    
+@app.route('/api/routines/delete/<string:routine_id>', methods=['DELETE'])
+def api_routines_delete(routine_id):
+    if remove_task_database(routine_id):
+        return jsonify({'message': 'OK'}), 200
+    return jsonify({'message': 'ERROR'}), 404
     
 if __name__ == '__main__':
     app.run(debug=True)

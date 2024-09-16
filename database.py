@@ -1,6 +1,7 @@
 import pymongo
 from dotenv import load_dotenv
 import os
+from bson import ObjectId
 
 load_dotenv()
 
@@ -12,8 +13,14 @@ def add_task_database(data):
     tasks_collection.insert_one(data)
     print("Routine inserted.")
 
-def remove_task_database(dataId): # To do
-    pass
+def remove_task_database(id):
+    data = ObjectId(id)
+    if tasks_collection.delete_one(filter={
+        '_id': data
+    }):
+        return True
+    return False
+    
 
 def get_all_routines():
     return list(tasks_collection.find())
