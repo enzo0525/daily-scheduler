@@ -1,3 +1,5 @@
+const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 fetch('/api/routines')
     .then(response => response.json())
     .then(data => {
@@ -9,7 +11,7 @@ fetch('/api/routines')
             const taskTitle = document.createElement('h3');
             const taskNotes = document.createElement('span');
 
-            taskDay.textContent = routine.taskDayOfWeek;
+            taskDay.textContent = DAYS[routine.taskDayOfWeek];
             taskTitle.textContent = routine.taskName;
             taskNotes.textContent = routine.taskNotes;
 
