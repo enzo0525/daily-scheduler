@@ -3,40 +3,38 @@ from database import add_task_database, get_all_routines, remove_task_database
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET']) #Index route.
 def index():
-    return render_template("index.j2")
+    return render_template("index.j2"), 200
 
-@app.route('/routines', methods=['GET'])
+@app.route('/routines', methods=['GET']) #Routines route.
 def routines():
-    return render_template('routines.j2')
+    if get_all_routines():
+        return render_template('routines.j2'), 200
+    return render_template('routines.j2', message='No routines were found, try adding some!'), 500
 
-@app.route('/api/routines', methods=['GET'])
+@app.route('/api/routines', methods=['GET']) #GET requesting all data from database.
 def api_routines():
-    routines = get_all_routines()
+    routines_list = get_all_routines()
+    return jsonify(routines_list)
 
-    for routine in routines:
-        routine['_id'] = str(routine['_id']) #Transforming _id to string, error appears if not (JSON cannot be serialized)
-
-    return jsonify(routines)
-
-@app.route('/submit', methods=['POST'])
+@app.route('/submit', methods=['POST']) #POST submitting data to insert in database.
 def submit():
-    if request.method == 'POST':
-        data = {
-            'taskName': request.form['taskName'],
-            'taskDayOfWeek': request.form['taskDayOfWeek'],
-            'taskNotes': request.form['taskNotes']
-        }
+    data = {
+        'taskName': request.form['taskName'],
+        'taskDayOfWeek': request.form['taskDayOfWeek'],
+        'taskNotes': request.form['taskNotes']
+    }
 
-        add_task_database(data)
-        return render_template('submit.j2')
+    if add_task_database(data):
+        return render_template('submit.j2', message='Task added succesfully!'), 200
+    return render_template('submit.j2', message='There was an issue saving your task. Try again later.'), 500
     
-@app.route('/api/routines/delete/<string:routine_id>', methods=['DELETE'])
+@app.route('/api/routines/delete/<string:routine_id>', methods=['DELETE']) #DELETE removing data with routine_id from database.
 def api_routines_delete(routine_id):
     if remove_task_database(routine_id):
         return jsonify({'message': 'OK'}), 200
-    return jsonify({'message': 'ERROR'}), 404
+    return jsonify({'message': 'ERROR'}), 500
     
 if __name__ == '__main__':
     app.run(debug=True)

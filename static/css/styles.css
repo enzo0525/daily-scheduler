@@ -45,6 +45,13 @@
 
 /* Routines Page */
 
+.no-tasks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 10vw;
+}
+
 .box {
     width: 100%;
     max-width: 1200px; /* Adjust as needed */

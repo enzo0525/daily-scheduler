@@ -23,13 +23,7 @@ fetch('/api/routines')
 
                 fetch(`api/routines/delete/${routine._id}`, {
                     method: 'DELETE'
-                }).then(response => {
-                    if (response.ok) {
-                        console.log('deu bom');
-                    } else {
-                        console.log('deu ruim');
-                    }
-                }); 
+                });
             });
 
             taskCard.appendChild(taskDay);
