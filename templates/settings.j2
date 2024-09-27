@@ -1,0 +1,18 @@
+{% include 'partials/nav.html' %}
+
+<main class="container">
+    <div class="box">
+        <h1 class="box-title">Settings</h1>
+        <form action="/submit/discordid" , method="post">
+            <div class="m-5">
+                <label for="discordID" class="form-label">DiscordID (right click on profile and copy ID)</label>
+                <input type="number" class="form-control" id="discordID" name="discordID" required>
+            </div>
+            <div class="submit-button">
+                <button type="submit" class="btn btn-primary btn-lg">Save</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+{% include "partials/footer.html" %}

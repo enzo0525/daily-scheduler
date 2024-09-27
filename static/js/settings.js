@@ -1,0 +1,1 @@
+// Check how many characters there is in discord ids, make sure you can only input numbers and length of them

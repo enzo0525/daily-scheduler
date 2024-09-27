@@ -1,14 +1,14 @@
 {% include "partials/nav.html" %}
-    <!-- Box -->
-    <main class="container">
-        <div class="box">
-            <h1 class="box-title">Routines</h1>
-            {% if message %}
-                <h1 class="no-tasks">{{ message }}</h1>
-            {% else %}
-            <div class="row" id="routine-list">
+<!-- Box -->
+<main class="container">
+    <div class="box">
+        <h1 class="box-title">Routines</h1>
+        {% if message %}
+        <h1 class="no-tasks">{{ message }}</h1>
+        {% else %}
+        <div class="row" id="routine-list">
             {% endif %}
-            </div>
         </div>
-    </main>
+    </div>
+</main>
 {% include "partials/footer.html" %}
